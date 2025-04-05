@@ -2,7 +2,7 @@
 
 A security lab project for learning about Web2 vulnerabilities (SSRF and IDOR) in the context of Web3 Solana applications.
 
-**Live URL**: https://solana-vuln-arena.vercel.app/
+**Live URL**: https://security.manishlabs.xyz/
 
 ## About This Project
 

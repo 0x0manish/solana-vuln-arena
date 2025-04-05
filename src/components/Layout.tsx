@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
           <SidebarHeader className="flex items-center px-4 py-2">
             <div className="flex items-center gap-2">
               <Shield className="h-6 w-6 text-purple-500" />
-              <span className="font-bold text-lg">Vuln Arena</span>
+              <span className="font-bold text-lg">Solana Security Arena</span>
             </div>
           </SidebarHeader>
           <SidebarContent>

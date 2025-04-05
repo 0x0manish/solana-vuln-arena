@@ -23,7 +23,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">
-              Solana Vuln Arena
+              Solana Security Arena
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               A web security lab for learning about SSRF and IDOR vulnerabilities in Web3 context

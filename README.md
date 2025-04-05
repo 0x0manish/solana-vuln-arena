@@ -1,9 +1,8 @@
-
 # Solana Vuln Arena
 
 A security lab project for learning about Web2 vulnerabilities (SSRF and IDOR) in the context of Web3 Solana applications.
 
-**URL**: https://lovable.dev/projects/4368a0cb-ea27-46c6-a4b2-f7cba2b00aa3
+**Live URL**: https://solana-vuln-arena.vercel.app/
 
 ## About This Project
 
@@ -74,7 +73,7 @@ Follow these steps to run the project locally:
 
 ```sh
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/0x0manish/solana-vuln-arena.git
 
 # Navigate to the project directory
 cd solana-vuln-arena

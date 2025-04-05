@@ -1,73 +1,100 @@
-# Welcome to your Lovable project
 
-## Project info
+# Solana Vuln Arena
+
+A security lab project for learning about Web2 vulnerabilities (SSRF and IDOR) in the context of Web3 Solana applications.
 
 **URL**: https://lovable.dev/projects/4368a0cb-ea27-46c6-a4b2-f7cba2b00aa3
 
-## How can I edit this code?
+## About This Project
 
-There are several ways of editing your application.
+Solana Vuln Arena is an educational tool designed to demonstrate how traditional web security vulnerabilities can impact Web3 applications. This project contains deliberately vulnerable code to help security researchers, developers, and students understand:
 
-**Use Lovable**
+1. Server-Side Request Forgery (SSRF) vulnerabilities
+2. Insecure Direct Object Reference (IDOR) vulnerabilities
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4368a0cb-ea27-46c6-a4b2-f7cba2b00aa3) and start prompting.
+> ⚠️ **IMPORTANT**: This application contains intentional security vulnerabilities for educational purposes. Do not use any of this code in production applications.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Security Vulnerabilities Included
 
-**Use your preferred IDE**
+### 1. SSRF (Server-Side Request Forgery)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Location**: `/nft-metadata` page
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Description**: The NFT metadata fetcher accepts any URL without proper validation, allowing attackers to make the server fetch data from internal resources.
 
-Follow these steps:
+**How to Test**:
+1. Navigate to the NFT Metadata page
+2. Enter one of these URLs in the input field:
+   - `https://internal-signer.local/keys`
+   - `http://169.254.169.254/latest/meta-data/`
+   - `http://192.168.1.1/admin`
+3. Click "Fetch" to see if you can access internal resources
+
+**Real-world Impact**: In a production environment, this vulnerability could allow attackers to:
+- Access cloud instance metadata to steal credentials
+- Reach internal services not meant to be public
+- Interact with private APIs or admin interfaces
+
+### 2. IDOR (Insecure Direct Object Reference)
+
+**Location**: `/transactions` page
+
+**Description**: The transaction history page allows access to any user's data simply by changing the user ID parameter, without proper authorization checks.
+
+**How to Test**:
+1. Navigate to the Transactions page
+2. By default, you'll see your data (user ID 1001)
+3. Try changing the user ID to access other users' data:
+   - `1002` - Alice's account
+   - `1003` - Bob's account with private notes
+   - `1004` - Charlie's VIP account with sensitive recovery information
+
+**Real-world Impact**: In a production environment, this vulnerability could allow attackers to:
+- View other users' transaction histories
+- Access private notes and personal information
+- Discover sensitive financial data or wallet information
+
+## Mitigation Strategies
+
+### SSRF Prevention:
+- Implement URL allowlisting to only permit trusted domains
+- Use a URL parsing library to validate URLs before making requests
+- Block requests to private IP ranges and localhost
+- Implement a proxy service that validates URLs
+
+### IDOR Prevention:
+- Always verify that the current user has permission to access the requested resource
+- Use non-sequential, non-predictable IDs
+- Implement proper access control checks at every API endpoint
+- Employ session-based authentication with proper authorization
+
+## Running the Project
+
+Follow these steps to run the project locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone <your-repo-url>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd solana-vuln-arena
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Learning Resources
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To learn more about these vulnerabilities:
 
-**Use GitHub Codespaces**
+- [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+- [OWASP IDOR Prevention](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References)
+- [PortSwigger Web Security Academy](https://portswigger.net/web-security)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Disclaimer
 
-## What technologies are used for this project?
+This project is for educational purposes only. The vulnerabilities demonstrated here should never be implemented in real-world applications. Always follow security best practices in your production code.
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/4368a0cb-ea27-46c6-a4b2-f7cba2b00aa3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

@@ -46,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="https://github.com/your-username/solana-vuln-arena" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/0x0manish/solana-vuln-arena" target="_blank" rel="noopener noreferrer">
                     <ExternalLink />
                     <span>GitHub</span>
                   </a>

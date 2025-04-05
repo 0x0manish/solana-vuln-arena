@@ -97,3 +97,5 @@ To learn more about these vulnerabilities:
 
 This project is for educational purposes only. The vulnerabilities demonstrated here should never be implemented in real-world applications. Always follow security best practices in your production code.
 
+This project was created using lovable.dev vibe coding.
+
